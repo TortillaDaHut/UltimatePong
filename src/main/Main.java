@@ -1,4 +1,5 @@
 package main;
+import gameObjects.*;
 
 public class Main {
 
