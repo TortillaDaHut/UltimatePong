@@ -1,5 +1,5 @@
 package gameObjects;
 
-public class GameObject {
+public class GameObject extends JComponent {
 
 }

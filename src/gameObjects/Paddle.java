@@ -1,5 +1,5 @@
 package gameObjects;
 
-public class Paddle {
+public class Paddle extends GameObject {
 
 }

@@ -1,5 +1,5 @@
 package gameObjects;
 
-public class Ball {
+public class Ball extends GameObject{
 
 }
