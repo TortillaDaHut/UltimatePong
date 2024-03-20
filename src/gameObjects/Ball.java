@@ -8,6 +8,8 @@ public class Ball extends GameObject{
 	private int ballY = H/2;
 	private int ballSpeedX = 3;
 	private int ballSpeedY = 2;
+	private int radius = 5;
+	
 
 
 	@Override
@@ -15,6 +17,6 @@ public class Ball extends GameObject{
 		super.paint(g);
 
 		g.setColor(Color.ORANGE);
-		g.fillOval(ballX, ballY, 5, 5);
+		g.fillOval(ballX, ballY, radius, radius);
 	}
 }
