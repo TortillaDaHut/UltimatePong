@@ -24,6 +24,9 @@ public class Paddle extends GameObject {
 
 		g.setColor(Color.BLUE);
 		g.fillRect(0, y, width, height);
+
+		g.setColor(Color.RED);
+		g.fillRect(790, y, width, height);
 	}
 
 

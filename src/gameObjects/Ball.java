@@ -8,7 +8,7 @@ public class Ball extends GameObject{
 	private int ballY = H/2;
 	private int ballSpeedX = 3;
 	private int ballSpeedY = 2;
-	private int radius = 5;
+	private int radius = 15;
 	
 
 
@@ -16,7 +16,7 @@ public class Ball extends GameObject{
 	public void paint(Graphics g) {
 		super.paint(g);
 
-		g.setColor(Color.ORANGE);
+		g.setColor(Color.WHITE);
 		g.fillOval(ballX, ballY, radius, radius);
 	}
 }
