@@ -21,7 +21,7 @@ public class AIPaddle extends Paddle {
 		super.paint(g);
 
 		g.setColor(Color.RED);
-		g.fillRect(790, y, width, height);
+		g.fillRect(W-width, y, width, height);
 	}
    
 }

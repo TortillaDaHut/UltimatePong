@@ -29,17 +29,16 @@ public class PongGame extends JPanel {
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.drawString("Score: " + ball.score1, 20, 30);
         g.drawString("Score: " + ball.score2, GameObject.W-100, 30);
-        
-        playerPaddle.updatePaddle();
+        gameLoop(g);
+      
+    }
+    
+    public void gameLoop(Graphics g) {
+    	playerPaddle.updatePaddle();
         ball.move();
-        
         ball.paint(g);
         playerPaddle.paint(g);
         aiPaddle.paint(g);
-        updateAIPaddle(ball);
-    }
-
-    public void updateAIPaddle(Ball ball) {
         aiPaddle.updateAIPaddle(ball);
     }
 }
