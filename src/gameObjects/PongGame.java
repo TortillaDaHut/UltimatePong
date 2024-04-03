@@ -3,26 +3,44 @@ package gameObjects;
 import java.awt.*;
 import javax.swing.*;
 
-/* This is the runner file because I needed to put this code somewhere. The instance is constructed in the main method. */
 public class PongGame extends JPanel {
 
-	public Paddle paddle;
-	public Ball ball;
-	public PongGame() {
-		setPreferredSize(new Dimension(GameObject.W, GameObject.H));
+    public PlayerPaddle playerPaddle;
+    public AIPaddle aiPaddle;
+    public Ball ball;
 
-		setBackground(Color.BLACK);
+    public PongGame() {
+        setPreferredSize(new Dimension(GameObject.W, GameObject.H));
+        setBackground(Color.BLACK);
 
-		paddle = new Paddle();
-		ball = new Ball();
-	}
+        playerPaddle = new PlayerPaddle(this);
+        add(playerPaddle);
 
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
+        aiPaddle = new AIPaddle();
+        add(aiPaddle);
+        
+        ball = new Ball(playerPaddle, aiPaddle, 0, 0);
+    }
+    
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.drawString("Score: " + ball.score1, 20, 30);
+        g.drawString("Score: " + ball.score2, GameObject.W-100, 30);
+        
+        playerPaddle.updatePaddle();
+        ball.move();
+        
+        ball.paint(g);
+        playerPaddle.paint(g);
+        aiPaddle.paint(g);
+        updateAIPaddle(ball);
+    }
 
-		ball.paint(g);
-		paddle.paint(g);
-
-	}
+    public void updateAIPaddle(Ball ball) {
+        aiPaddle.updateAIPaddle(ball);
+    }
 }
+

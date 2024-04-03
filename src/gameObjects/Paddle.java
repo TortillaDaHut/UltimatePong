@@ -12,22 +12,30 @@ public class Paddle extends GameObject {
 	public int y = H/2 - height/2;
 
 
-
+   public int getY() {
+       return y;
+   }
+  
+   public int getWidth() {
+       return width;
+   }
+   
+   public int getHeight() {
+       return height;
+   }
 
 	//These are used in movement. May have to switch where they are. UML diagram will help for sure.
-	private boolean upPressed = false;
-	private boolean downPressed = false;
+	public boolean upPressed = false;
+	public boolean downPressed = false;
+   
+   public void moveUp() {
+       if (y>(0)){
+            y -= speed; // Decrease y-coordinate to move up
+    }}
 
-	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
-
-		g.setColor(Color.BLUE);
-		g.fillRect(0, y, width, height);
-
-		g.setColor(Color.RED);
-		g.fillRect(790, y, width, height);
-	}
-
+    public void moveDown() { 
+        if (y<(H-height)){
+            y += speed; // Increase y-coordinate to move down
+    }}
 
 }
