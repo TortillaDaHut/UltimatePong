@@ -34,6 +34,8 @@ public class PongGame extends JPanel {
         
         
         gameLoop(g);
+        
+        repaint();
       
     }
     

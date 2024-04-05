@@ -21,8 +21,7 @@ public class PlayerPaddle extends Paddle implements KeyListener {
             upPressed = true; // Set the upPressed flag to true
         } else if (keyCode == KeyEvent.VK_S) {
             downPressed = true; // Set the downPressed flag to true
-        }
-        pongGame.repaint(); // Repaint the PongGame panel
+        } // Repaint the PongGame panel
     }
 
     @Override
