@@ -8,6 +8,10 @@ public class PlayerBall extends GameObject {
 	private int ballX;
     private int ballY;
     private Velocity velocity;
+    
+    int maxX = 6;
+    int maxY = 4;
+    
     private int radius = 10;
     
     protected PlayerPaddle playerPaddle;
@@ -95,6 +99,7 @@ public class PlayerBall extends GameObject {
                 resetBall(0);
             }
         }
+        clampSpeed();
         ballX += (velocity.getX() + .5)* deltaTime.getNano()/1000000;
     }
     
@@ -126,6 +131,20 @@ public class PlayerBall extends GameObject {
 
     public void reverseY() {
         velocity.multY(-1);
+    }
+    
+    public void clampSpeed() {
+    	
+    	
+    	if(Math.abs(velocity.getY()) > maxY) {
+    		velocity.setY(Integer.signum((int)velocity.getY()) * maxY);
+    	}
+    	
+    	if(Math.abs(velocity.getX()) > maxX) {
+    		velocity.setX(Integer.signum((int)velocity.getX()) * maxX);
+    	}
+    	
+    	
     }
     
 
