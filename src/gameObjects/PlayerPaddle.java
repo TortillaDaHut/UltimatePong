@@ -2,6 +2,7 @@ package gameObjects;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.time.Duration;
 
 public class PlayerPaddle extends Paddle implements KeyListener {
 
@@ -35,12 +36,12 @@ public class PlayerPaddle extends Paddle implements KeyListener {
     }
 
     // Method to continuously check for key presses and update paddle position
-    public void updatePaddle() {
+    public void updatePaddle(Duration deltaTime) {
         if (upPressed) {
-            moveUp();
+            moveUp(deltaTime);
         }
         if (downPressed) {
-            moveDown();
+            moveDown(deltaTime);
         }
     }
 

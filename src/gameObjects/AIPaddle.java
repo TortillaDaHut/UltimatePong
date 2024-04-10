@@ -1,6 +1,7 @@
 package gameObjects;
 import java.awt.*;
 import java.awt.event.*;
+import java.time.Duration;
 
 public class AIPaddle extends Paddle {
     
@@ -8,11 +9,11 @@ public class AIPaddle extends Paddle {
     }
 
         // Method to update the position of the paddle based on the ball's position
-    public void updateAIPaddle(Ball ball) {
+    public void updateAIPaddle(PlayerBall ball, Duration deltaTime) {
         if (ball.getBallY() < getY()) {
-            moveUp();
+            moveUp(deltaTime);
         } else if (ball.getBallY() > getY() + Paddle.HEIGHT) {
-            moveDown();
+            moveDown(deltaTime);
         }
     }
     

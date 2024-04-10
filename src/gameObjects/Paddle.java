@@ -1,6 +1,7 @@
 package gameObjects;
 
 import java.awt.*;
+import java.time.Duration;
 
 public class Paddle extends GameObject {
 
@@ -28,14 +29,14 @@ public class Paddle extends GameObject {
 	public boolean upPressed = false;
 	public boolean downPressed = false;
    
-   public void moveUp() {
+   public void moveUp(Duration deltaTime) {
        if (y>(0)){
-            y -= speed; // Decrease y-coordinate to move up
+            y -= speed * deltaTime.getNano()/1000000; // Decrease y-coordinate to move up
     }}
 
-    public void moveDown() { 
+    public void moveDown(Duration deltaTime) { 
         if (y<(H-height)){
-            y += speed; // Increase y-coordinate to move down
+            y += speed * deltaTime.getNano()/1000000; // Increase y-coordinate to move down
     }}
 
 }

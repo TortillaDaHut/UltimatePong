@@ -1,13 +1,18 @@
 package gameObjects;
 
 import java.awt.*;
+import java.time.Duration;
+import java.time.Instant;
+
 import javax.swing.*;
 
 public class PongGame extends JPanel {
 
     public PlayerPaddle playerPaddle;
     public AIPaddle aiPaddle;
-    public Ball ball;
+    public PlayerBall ball;
+    public Duration deltaTime;
+    public Instant beginTime;
 
     public PongGame() {
         setPreferredSize(new Dimension(GameObject.W, GameObject.H));
@@ -19,12 +24,15 @@ public class PongGame extends JPanel {
         aiPaddle = new AIPaddle();
         add(aiPaddle);
         
-        ball = new Ball(playerPaddle, aiPaddle, 0, 0);
+        ball = new PlayerBall(playerPaddle, aiPaddle, 0, 0);
+        deltaTime = Duration.between(Instant.now(), Instant.now());
     }
     
     @Override
     public void paintComponent(Graphics g) {
+    	beginTime = Instant.now();
         super.paintComponent(g);
+        
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.drawString("Score: " + ball.score1, 20, 30);
@@ -33,19 +41,21 @@ public class PongGame extends JPanel {
         
         
         
-        gameLoop(g);
+        gameLoop(g, deltaTime);
         
         repaint();
+        
+        deltaTime = Duration.between(beginTime, Instant.now());
       
     }
     
-    public void gameLoop(Graphics g) {
-    	playerPaddle.updatePaddle();
+    public void gameLoop(Graphics g, Duration deltaTime) {
+    	playerPaddle.updatePaddle(deltaTime);
         playerPaddle.paint(g);
-        ball.move();
+        ball.move(deltaTime);
         ball.paint(g);
         aiPaddle.paint(g);
-        aiPaddle.updateAIPaddle(ball);
+        aiPaddle.updateAIPaddle(ball,deltaTime);
     }
 }
 
