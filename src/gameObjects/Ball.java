@@ -6,8 +6,8 @@ public class Ball extends GameObject {
 
     private int ballX;
     private int ballY;
-    private int ballSpeedX = 3;
-    private int ballSpeedY = 2;
+    private int ballSpeedX = 7;
+    private int ballSpeedY = 5;
     private int radius = 10;
     
     private PlayerPaddle playerPaddle;
@@ -36,7 +36,7 @@ public class Ball extends GameObject {
     }
 
     public void changeX() {
-        if (ballX <= PlayerPaddle.width) {
+        if (ballX <= PlayerPaddle.width*2) {
             if ((ballY >= playerPaddle.getY()) && (ballY <= playerPaddle.getY() + PlayerPaddle.height)) {
                 reverseX();
             } else {
@@ -45,7 +45,7 @@ public class Ball extends GameObject {
             }
         }
         if (ballX >= W - AIPaddle.width - radius) {
-            if ((ballY >= aiPaddle.getY()) && (ballY <= aiPaddle.getY() + AIPaddle.height)) {
+            if ((ballY >= aiPaddle.getY()) && (ballY <= aiPaddle.getY() + AIPaddle.height )) {
                 reverseX();
             } else {
                 score1++;
@@ -65,8 +65,8 @@ public class Ball extends GameObject {
     public void resetBall() {
         ballX = W / 2;
         ballY = H / 2;
-        ballSpeedX = 3;
-        ballSpeedY = 2;
+        ballSpeedX = ballSpeedX * -1;
+        ballSpeedY = ballSpeedY * 1;
     }
 
     public void reverseX() {
