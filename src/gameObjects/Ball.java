@@ -14,6 +14,7 @@ public class Ball extends GameObject {
     private AIPaddle aiPaddle;
     public int score1;
     public int score2;
+    public Sound sound = new Sound();
 
     public Ball(PlayerPaddle playerPaddle, AIPaddle aiPaddle, int score1, int score2) {
         this.playerPaddle = playerPaddle;
@@ -37,6 +38,7 @@ public class Ball extends GameObject {
 
     public void changeX() {
         if (ballX <= PlayerPaddle.width*2) {
+            sound.playSound(0);
             if ((ballY >= playerPaddle.getY()) && (ballY <= playerPaddle.getY() + PlayerPaddle.height)) {
                 reverseX();
             } else {
@@ -45,6 +47,7 @@ public class Ball extends GameObject {
             }
         }
         if (ballX >= W - AIPaddle.width - radius) {
+            sound.playSound(0);
             if ((ballY >= aiPaddle.getY()) && (ballY <= aiPaddle.getY() + AIPaddle.height )) {
                 reverseX();
             } else {
@@ -57,6 +60,7 @@ public class Ball extends GameObject {
 
     public void changeY() {
         if (ballY < radius || ballY > H - radius) {
+            sound.playSound(0);
             reverseY();
         }
         ballY += ballSpeedY;
