@@ -15,12 +15,13 @@ public class Ball extends GameObject {
     public int score1;
     public int score2;
 
-    public Ball(PlayerPaddle playerPaddle, AIPaddle aiPaddle, int score1, int score2) {
+    public Ball(PlayerPaddle playerPaddle, AIPaddle aiPaddle, int score1, int score2, int ballSpeed) {
         this.playerPaddle = playerPaddle;
         this.aiPaddle = aiPaddle;
         this.score1 = score1;
         this.score2 = score2;
-
+        ballSpeedY = ballSpeed;
+        ballSpeedX = ballSpeed;
         // Initializes ball position
         ballX = W / 2;
         ballY = H / 2;
@@ -36,7 +37,7 @@ public class Ball extends GameObject {
     }
 
     public void changeX() {
-        if (ballX <= PlayerPaddle.width*2) {
+        if (ballX <= PlayerPaddle.width + radius) {
             if ((ballY >= playerPaddle.getY()) && (ballY <= playerPaddle.getY() + PlayerPaddle.height)) {
                 reverseX();
             } else {

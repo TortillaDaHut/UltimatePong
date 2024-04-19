@@ -32,7 +32,7 @@ public class PongGame extends JPanel {
         frame.getContentPane().add(mainMenu); // Add MainMenu directly to the content pane
     }
 
-    public void initializeGame(boolean singlePlayer) {
+    public void initializeGame(boolean singlePlayer, int ballSpeed) {
         AIPlayer = singlePlayer;
 
         aiPaddle = new AIPaddle(this, AIPlayer);
@@ -41,7 +41,7 @@ public class PongGame extends JPanel {
         playerPaddle = new PlayerPaddle(this);
         add(playerPaddle);
 
-        ball = new Ball(playerPaddle, aiPaddle, 0, 0);
+        ball = new Ball(playerPaddle, aiPaddle, 0, 0, ballSpeed);
     }
 
     public void startGame() {
