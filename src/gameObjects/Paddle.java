@@ -47,4 +47,8 @@ public class Paddle extends GameObject {
         this.downPressed = pressed;
     }
     
+    public void reset() {
+    	y = H/2 - height/2;
+    }
+    
 }

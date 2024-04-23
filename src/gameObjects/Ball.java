@@ -6,8 +6,8 @@ public class Ball extends GameObject {
 
     private int ballX;
     private int ballY;
-    private int ballSpeedX = 7;
-    private int ballSpeedY = 5;
+    private int ballSpeedX = 5;
+    private int ballSpeedY = 3;
     private int radius = 10;
     
     private PlayerPaddle playerPaddle;
@@ -42,6 +42,8 @@ public class Ball extends GameObject {
             } else {
                 score2++;
                 resetBall();
+                playerPaddle.reset();
+                aiPaddle.reset();
             }
         }
         if (ballX >= W - AIPaddle.width - radius) {
@@ -50,6 +52,8 @@ public class Ball extends GameObject {
             } else {
                 score1++;
                 resetBall();
+                playerPaddle.reset();
+                aiPaddle.reset();
             }
         }
         ballX += ballSpeedX;
