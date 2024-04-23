@@ -144,9 +144,9 @@ public class PongGame extends JPanel {
 
     private void updateGameState() {
         if (!paused) {
+            ball.move();
             playerPaddle.updatePaddle();
             aiPaddle.updateAIPaddle(ball);
-            ball.move();
         }
     }
 
