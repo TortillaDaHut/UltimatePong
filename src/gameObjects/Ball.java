@@ -14,6 +14,7 @@ public class Ball extends GameObject {
     private AIPaddle aiPaddle;
     public int score1;
     public int score2;
+    public Sound sound = new Sound();
 
     public Ball(PlayerPaddle playerPaddle, AIPaddle aiPaddle, int score1, int score2) {
         this.playerPaddle = playerPaddle;
@@ -37,23 +38,21 @@ public class Ball extends GameObject {
 
     public void changeX() {
         if (ballX <= PlayerPaddle.width*2) {
-            if ((ballY+radius >= playerPaddle.getY()) && (ballY - radius <= playerPaddle.getY() + PlayerPaddle.height)) {
+            sound.playSound(0);
+            if ((ballY+radius >= playerPaddle.getY()) && (ballY-radius <= playerPaddle.getY() + PlayerPaddle.height)) {
                 reverseX();
             } else {
                 score2++;
                 resetBall();
-                playerPaddle.reset();
-                aiPaddle.reset();
             }
         }
         if (ballX >= W - AIPaddle.width - radius) {
-            if ((ballY + radius >= aiPaddle.getY()) && (ballY - radius <= aiPaddle.getY() + AIPaddle.height )) {
+            sound.playSound(0);
+            if ((ballY+radius >= aiPaddle.getY()) && (ballY-radius <= aiPaddle.getY() + AIPaddle.height )) {
                 reverseX();
             } else {
                 score1++;
                 resetBall();
-                playerPaddle.reset();
-                aiPaddle.reset();
             }
         }
         ballX += ballSpeedX;
@@ -61,6 +60,7 @@ public class Ball extends GameObject {
 
     public void changeY() {
         if (ballY < radius || ballY > H - radius) {
+            sound.playSound(0);
             reverseY();
         }
         ballY += ballSpeedY;
@@ -80,6 +80,8 @@ public class Ball extends GameObject {
     public void reverseY() {
         ballSpeedY = -ballSpeedY;
     }
+    
+
 
     @Override
     public void paint(Graphics g) {
@@ -87,4 +89,25 @@ public class Ball extends GameObject {
         g.setColor(Color.WHITE);
         g.fillOval(ballX - radius, ballY - radius, 2 * radius, 2 * radius);
     }
+
+
+    
+    
+	public void setBallSpeedX(int ballSpeedX) {
+		this.ballSpeedX = ballSpeedX;
+	}
+
+
+	public void setBallSpeedY(int ballSpeedY) {
+		this.ballSpeedY = ballSpeedY;
+	}
+
+	public int getBallSpeedX() {
+		return ballSpeedX;
+	}
+
+	public int getBallSpeedY() {
+		return ballSpeedY;
+	}
+    
 }

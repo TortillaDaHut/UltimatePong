@@ -173,9 +173,12 @@ public class PongGame extends JPanel {
     	ball.score1 = 0;
     	ball.score2 = 0;
     	
+    	int xSpeed = ball.getBallSpeedX();
+    	int ySpeed = ball.getBallSpeedY();
+    	
     	ball.resetBall();
-    	ball.setBallSpeedX(2);
-    	ball.setBallSpeedY(1);
+    	ball.setBallSpeedX(xSpeed);
+    	ball.setBallSpeedY(ySpeed);
     	
     	paused = false;
     	
