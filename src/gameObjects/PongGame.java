@@ -17,13 +17,19 @@ public class PongGame extends JPanel {
     private long elapsedTime = 0; // Store the elapsed time
     private boolean paused = false; // Track pause state
     public boolean AIPlayer = true; // Set to false to enable two-player mode
+    private PauseScreen pauseScreen;
 
     public PongGame() {
         setPreferredSize(new Dimension(GameObject.W, GameObject.H));
         setBackground(Color.BLACK);
+        
+        pauseScreen = new PauseScreen(this);
+        pauseScreen.setVisible(false);
+        add(pauseScreen);
 
         // Deferred call to showMainMenu after the panel is added to a JFrame whever
         SwingUtilities.invokeLater(this::showMainMenu);
+        
     }
 
     private void showMainMenu() {
@@ -107,9 +113,9 @@ public class PongGame extends JPanel {
     private void togglePause() {
         paused = !paused; // Toggle the pause state
         if (paused) {
-            timer.stop(); // Pause the timer
+            pauseGame(); // Pause the timer
         } else {
-            timer.start(); // Resume the timer
+            resumeGame(); // Resume the timer
         }
     }
 
@@ -131,20 +137,20 @@ public class PongGame extends JPanel {
         int x = (getWidth() - fontMetrics.stringWidth(timeStr)) / 2;
         g.drawString(timeStr, x, 30);
         if (ball != null) { // because paintComponent can be called prior to the ball being initiallized this removes the errors from the log even though it would have no effect on gameplay 
-        g.drawString("Score: " + ball.score1, 20, 30);
-        g.drawString("Score: " + ball.score2, GameObject.W - 100, 30);
-        playerPaddle.updatePaddle();
-        aiPaddle.updateAIPaddle(ball);
-        ball.move();
-        ball.paint(g);
-        aiPaddle.paint(g);
-        playerPaddle.paints(g);
+        	g.drawString("Score: " + ball.score1, 20, 30);
+        	g.drawString("Score: " + ball.score2, GameObject.W - 100, 30);
+        	playerPaddle.updatePaddle();
+        	aiPaddle.updateAIPaddle(ball);
+        	ball.move();
+        	ball.paint(g);
+        	aiPaddle.paint(g);
+        	playerPaddle.paints(g);
         }
     }
 
     private void updateGameState() {
         if (!paused) {
-            ball.move();
+        	ball.move();
             playerPaddle.updatePaddle();
             aiPaddle.updateAIPaddle(ball);
         }
@@ -153,10 +159,53 @@ public class PongGame extends JPanel {
     // Method to pause the game
     public void pauseGame() {
         timer.stop(); // Stop the timer
+        pauseScreen.setVisible(true);
     }
 
     // Method to resume the game
     public void resumeGame() {
+    	pauseScreen.setVisible(false);
         timer.start(); // Start the timer
     }
+    
+    public void restartGame() {
+    	
+    	ball.score1 = 0;
+    	ball.score2 = 0;
+    	
+    	ball.resetBall();
+    	ball.setBallSpeedX(2);
+    	ball.setBallSpeedY(1);
+    	
+    	paused = false;
+    	
+    	resumeGame();
+    }
+    
+    public void returnToMainMenu() {
+    	
+    	remove(playerPaddle);
+    	remove(aiPaddle);
+    	remove(ball);
+    	
+    	paused = false;
+    	
+    	pauseScreen.setVisible(false);
+    	
+    	showMainMenu();
+    	
+    	addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                handleKeyPress(e);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                handleKeyRelease(e);
+            }
+        });
+    }
+    
+    
 }
