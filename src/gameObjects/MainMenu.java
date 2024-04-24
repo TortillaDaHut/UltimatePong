@@ -2,8 +2,7 @@ package gameObjects;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class MainMenu extends JPanel {
 
@@ -14,16 +13,16 @@ public class MainMenu extends JPanel {
     public MainMenu(PongGame pongGame) {
         this.pongGame = pongGame;
         setLayout(new GridLayout(2, 1)); // Two options vertically aligned
-        
+
         singlePlayerButton = new JButton("Single Player");
         singlePlayerButton.addActionListener(e -> startGame(true)); // Lambda expression
         add(singlePlayerButton);
-        
+
         multiplayerButton = new JButton("Multiplayer");
         multiplayerButton.addActionListener(e -> startGame(false)); // Lambda expression
         add(multiplayerButton);
     }
-    
+
 private void startGame(boolean singlePlayer) {
     pongGame.initializeGame(singlePlayer); // Initialize the game with the selected mode
 

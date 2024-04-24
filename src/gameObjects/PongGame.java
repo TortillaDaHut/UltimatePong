@@ -172,17 +172,20 @@ public class PongGame extends JPanel {
     	
     	ball.score1 = 0;
     	ball.score2 = 0;
-    	
+
     	int xSpeed = ball.getBallSpeedX();
     	int ySpeed = ball.getBallSpeedY();
-    	
     	ball.resetBall();
     	ball.setBallSpeedX(xSpeed);
     	ball.setBallSpeedY(ySpeed);
-    	
+
+        startTime = System.currentTimeMillis();
+
     	paused = false;
-    	
-    	resumeGame();
+
+
+        resumeGame();
+
     }
     
     public void returnToMainMenu() {
@@ -190,6 +193,7 @@ public class PongGame extends JPanel {
     	remove(playerPaddle);
     	remove(aiPaddle);
     	remove(ball);
+
     	
     	paused = false;
     	

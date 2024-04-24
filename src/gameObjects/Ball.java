@@ -2,6 +2,7 @@ package gameObjects;
 
 import java.awt.*;
 
+
 public class Ball extends GameObject {
 
     private int ballX;
@@ -21,7 +22,8 @@ public class Ball extends GameObject {
         this.aiPaddle = aiPaddle;
         this.score1 = score1;
         this.score2 = score2;
-
+        ballSpeedY = 3;
+        ballSpeedX = 3;
         // Initializes ball position
         ballX = W / 2;
         ballY = H / 2;
