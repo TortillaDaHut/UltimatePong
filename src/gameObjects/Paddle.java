@@ -7,7 +7,7 @@ public class Paddle extends GameObject {
 	//Paddle position and hitbox variables
 	public static final int width = 10;
 	public static final int height = 80;
-	public static final int speed = 5;
+	public static final int speed = 3;
    
    public boolean upPressed = false;
 	public boolean downPressed = false;

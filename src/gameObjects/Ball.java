@@ -7,8 +7,8 @@ public class Ball extends GameObject {
 
     private int ballX;
     private int ballY;
-    private int ballSpeedX = 2;
-    private int ballSpeedY = 1;
+    private int ballSpeedX = 3;
+    private int ballSpeedY = 2;
     private int radius = 10;
     
     private PlayerPaddle playerPaddle;
@@ -22,7 +22,7 @@ public class Ball extends GameObject {
         this.aiPaddle = aiPaddle;
         this.score1 = score1;
         this.score2 = score2;
-        ballSpeedY = 3;
+        ballSpeedY = 4;
         ballSpeedX = 3;
         // Initializes ball position
         ballX = W / 2;
@@ -31,6 +31,10 @@ public class Ball extends GameObject {
 
     public int getBallY() {
         return ballY;
+    }
+    
+    public int getBallX() {
+    	return ballX;
     }
 
     public void move() {

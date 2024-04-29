@@ -111,7 +111,7 @@ public class PongGame extends JPanel {
     }
 
     private void togglePause() {
-        paused = !paused; // Toggle the pause state
+        paused =! paused; // Toggle the pause state
         if (paused) {
             pauseGame(); // Pause the timer
         } else {
