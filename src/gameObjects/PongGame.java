@@ -18,6 +18,7 @@ public class PongGame extends JPanel {
     private boolean paused = false; // Track pause state
     public boolean AIPlayer = true; // Set to false to enable two-player mode
     private PauseScreen pauseScreen;
+    private boolean onMainMenu = true;
     public Sound sound = new Sound();
     
     // initialize background
@@ -37,6 +38,7 @@ public class PongGame extends JPanel {
     }
 
     private void showMainMenu() {
+    	onMainMenu = true;
         MainMenu mainMenu = new MainMenu(this);
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         frame.getContentPane().add(mainMenu); // Add MainMenu directly to the content pane
@@ -56,6 +58,7 @@ public class PongGame extends JPanel {
 
     public void startGame() {
         // Timer that triggers every 10 ms.
+    	onMainMenu = false;
         timer = new Timer(10, new ActionListener() {
 
             @Override // this is the game loop
@@ -86,7 +89,7 @@ public class PongGame extends JPanel {
 
     public void handleKeyPress(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        if (keyCode == KeyEvent.VK_P) {
+        if (!onMainMenu && keyCode == KeyEvent.VK_P) {
             togglePause(); // pauses the game
         } else if (!paused) { // prevents movement if the game is paused and penalizes pause buffering(type of cheating)
             if (keyCode == KeyEvent.VK_W) {
