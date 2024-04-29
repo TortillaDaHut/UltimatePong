@@ -189,10 +189,9 @@ public class PongGame extends JPanel {
     	sound.playSound(3);
     	
     	int xSpeed = ball.getBallSpeedX();
-    	int ySpeed = ball.getBallSpeedY();
+    	xSpeed = Math.random() < .5 ? xSpeed : -xSpeed;
     	ball.resetBall();
     	ball.setBallSpeedX(xSpeed);
-    	ball.setBallSpeedY(ySpeed);
 
         startTime = System.currentTimeMillis();
 

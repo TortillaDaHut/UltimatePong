@@ -30,7 +30,9 @@ public class Ball extends GameObject {
         this.score1 = score1;
         this.score2 = score2;
         ballSpeedY = 4;
+        ballSpeedY = Math.random() < .5 ? ballSpeedY : -ballSpeedY;
         ballSpeedX = 3;
+        ballSpeedY = Math.random() < .5 ? ballSpeedX : -ballSpeedX;
         // Initializes ball position
         ballX = W / 2;
         ballY = H / 2;
@@ -85,8 +87,10 @@ public class Ball extends GameObject {
     public void resetBall() {
         ballX = W / 2;
         ballY = H / 2;
-        ballSpeedX = ballSpeedX * -1;
-        ballSpeedY = ballSpeedY * 1;
+        
+        
+        
+        ballSpeedY = Math.random() < .5 ? ballSpeedY : -ballSpeedY;
     }
 
     public void reverseX() {

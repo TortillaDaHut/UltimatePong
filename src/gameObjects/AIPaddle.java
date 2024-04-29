@@ -24,7 +24,7 @@ public class AIPaddle extends Paddle {
 
     // Method to update the position of the paddle based on the ball's position
     public void updateAIPaddle(Ball ball) {
-        if (AIPlayer && ball.getBallX() > W/3) {
+        if (AIPlayer && ((ball.getBallSpeedX() > 0) || ball.getBallX() > W/3)) {
             if (ball.getBallY() < getY()) {
                 moveUp();
             } else if (ball.getBallY() > getY() + Paddle.HEIGHT) {
