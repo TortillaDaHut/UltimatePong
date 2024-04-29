@@ -10,8 +10,8 @@ public class Ball extends GameObject {
 
     private int ballX;
     private int ballY;
-    private int ballSpeedX = 3;
-    private int ballSpeedY = 2;
+    private int ballSpeedX;
+    private int ballSpeedY;
     private int radius = 10;
     
     private PlayerPaddle playerPaddle;
