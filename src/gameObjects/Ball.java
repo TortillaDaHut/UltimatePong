@@ -1,6 +1,9 @@
 package gameObjects;
 
 import java.awt.*;
+import java.util.Random;
+
+import javax.swing.ImageIcon;
 
 
 public class Ball extends GameObject {
@@ -17,6 +20,10 @@ public class Ball extends GameObject {
     public int score2;
     public Sound sound = new Sound();
 
+    Image[] images = new Image[3];
+    Random random = new Random();
+    int randomVal = random.nextInt(3);
+    
     public Ball(PlayerPaddle playerPaddle, AIPaddle aiPaddle, int score1, int score2) {
         this.playerPaddle = playerPaddle;
         this.aiPaddle = aiPaddle;
@@ -27,6 +34,9 @@ public class Ball extends GameObject {
         // Initializes ball position
         ballX = W / 2;
         ballY = H / 2;
+        images[0] = new ImageIcon("./blueOrbImg.png").getImage();
+        images[1] = new ImageIcon("./tennisBallImg.png").getImage();
+        images[2] = new ImageIcon("./pokeBallImg.png").getImage();
     }
 
     public int getBallY() {
@@ -43,7 +53,7 @@ public class Ball extends GameObject {
     }
 
     public void changeX() {
-        if (ballX <= PlayerPaddle.width*2) {
+        if (ballX <= PlayerPaddle.width*0.5) {
             sound.playSound(0);
             if ((ballY+radius >= playerPaddle.getY()) && (ballY-radius <= playerPaddle.getY() + PlayerPaddle.height)) {
                 reverseX();
@@ -91,29 +101,28 @@ public class Ball extends GameObject {
 
     @Override
     public void paint(Graphics g) {
-        super.paint(g);
-        g.setColor(Color.WHITE);
-        g.fillOval(ballX - radius, ballY - radius, 2 * radius, 2 * radius);
+        super.paintComponent(g);
+        g.drawImage(images[randomVal], ballX, ballY, null);
     }
 
 
     
     
-	public void setBallSpeedX(int ballSpeedX) {
-		this.ballSpeedX = ballSpeedX;
-	}
+    public void setBallSpeedX(int ballSpeedX) {
+        this.ballSpeedX = ballSpeedX;
+    }
 
 
-	public void setBallSpeedY(int ballSpeedY) {
-		this.ballSpeedY = ballSpeedY;
-	}
+    public void setBallSpeedY(int ballSpeedY) {
+        this.ballSpeedY = ballSpeedY;
+    }
 
-	public int getBallSpeedX() {
-		return ballSpeedX;
-	}
+    public int getBallSpeedX() {
+        return ballSpeedX;
+    }
 
-	public int getBallSpeedY() {
-		return ballSpeedY;
-	}
+    public int getBallSpeedY() {
+        return ballSpeedY;
+    }
     
 }
