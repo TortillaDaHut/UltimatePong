@@ -18,16 +18,20 @@ public class PongGame extends JPanel {
     private boolean paused = false; // Track pause state
     public boolean AIPlayer = true; // Set to false to enable two-player mode
     private PauseScreen pauseScreen;
-
+    public Sound sound = new Sound();
+    
+    // initialize background
+    Image background = new ImageIcon("./spaceBackground.jpg").getImage();
+   
+    
     public PongGame() {
         setPreferredSize(new Dimension(GameObject.W, GameObject.H));
-        setBackground(Color.BLACK);
-        
+
         pauseScreen = new PauseScreen(this);
         pauseScreen.setVisible(false);
         add(pauseScreen);
 
-        // Deferred call to showMainMenu after the panel is added to a JFrame whever
+        // Deferred call to showMainMenu after the panel is added to a JFrame 
         SwingUtilities.invokeLater(this::showMainMenu);
         
     }
@@ -113,8 +117,10 @@ public class PongGame extends JPanel {
     private void togglePause() {
         paused = !paused; // Toggle the pause state
         if (paused) {
+            sound.playSound(1);
             pauseGame(); // Pause the timer
         } else {
+            sound.playSound(2);
             resumeGame(); // Resume the timer
         }
     }
@@ -122,9 +128,12 @@ public class PongGame extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        // draw background
+        g.drawImage(background, 0, 0, 800, 600, null);
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 20));
-
+        
+        
         if (!paused) {// Update elapsed time if game is not paused
             elapsedTime = System.currentTimeMillis() - startTime;
         }
@@ -172,7 +181,10 @@ public class PongGame extends JPanel {
     	
     	ball.score1 = 0;
     	ball.score2 = 0;
-
+    	
+    	// sound 
+    	sound.playSound(3);
+    	
     	int xSpeed = ball.getBallSpeedX();
     	int ySpeed = ball.getBallSpeedY();
     	ball.resetBall();
@@ -194,7 +206,9 @@ public class PongGame extends JPanel {
     	remove(aiPaddle);
     	remove(ball);
 
-    	
+    	// sound 
+        sound.playSound(3);
+        
     	paused = false;
     	
     	pauseScreen.setVisible(false);
